@@ -1,28 +1,17 @@
 package firstuniquecharacterinastring
 
-import (
-	"testing"
+func firstUniqChar(s string) int {
+	characters := make(map[rune]int)
 
-	"github.com/stretchr/testify/assert"
-)
+	for _, ch := range s {
+		characters[ch]++
+	}
 
-func TestFirstUniqChar(t *testing.T) {
-	t.Run("Case 1", func(t *testing.T) {
-		s := "leetcode"
-		want := 0
-		got := firstUniqChar(s)
-		assert.Equal(t, got, want)
-	})
-	t.Run("Case 2", func(t *testing.T) {
-		s := "loveleetcode"
-		want := 1
-		got := firstUniqChar(s)
-		assert.Equal(t, got, want)
-	})
-	t.Run("Case 3", func(t *testing.T) {
-		s := "aabb"
-		want := -1
-		got := firstUniqChar(s)
-		assert.Equal(t, got, want)
-	})
+	for i, ch := range s {
+		if characters[ch] == 1 {
+			return i
+		}
+	}
+
+	return -1
 }
